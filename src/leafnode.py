@@ -6,8 +6,8 @@ class LeafNode(HTMLNode):
 
     def to_html(self):
         if(self.value == None):
-            raise ValueError()
-        elif(self.tag == None):
+            raise ValueError("LeafNode requires value")
+        if(self.tag == None):
             return self.value
         
         match self.tag:
@@ -33,5 +33,9 @@ class LeafNode(HTMLNode):
                 return f"<i>{self.value}</i>"
             case ("code"):
                 return f"<code>{self.value}</code>"
+            case ("span"):
+                return f"<span>{self.value}</span>"
+            case ("div"):
+                return f"<div>{self.value}</div>"
             case _:
                 raise Exception(f"{self.tag} is invalid tag")
