@@ -1,4 +1,5 @@
 from htmlnode import HTMLNode
+from textnode import TextType
 
 class LeafNode(HTMLNode):
     def __init__(self, tag, value, props=None):
@@ -37,5 +38,24 @@ class LeafNode(HTMLNode):
                 return f"<span>{self.value}</span>"
             case ("div"):
                 return f"<div>{self.value}</div>"
+            case ("img"):
+                return f"<img{self.props_to_html()} />"
             case _:
                 raise Exception(f"{self.tag} is invalid tag")
+            
+def text_node_to_html_node(text_node):
+    match text_node.text_type:
+        case (TextType.NORMAL):
+            return LeafNode(None, text_node.text)
+        case (TextType.BOLD):
+            return LeafNode("b", text_node.text)
+        case (TextType.ITALIC):
+            return LeafNode("i", text_node.text)
+        case (TextType.CODE):
+            return LeafNode("code", text_node.text)
+        case (TextType.LINK):
+            return LeafNode("a", text_node.text, {"href": text_node.url})
+        case (TextType.IMAGE):
+            return LeafNode("img", None, {"src": text_node.url, "alt": text_node.text})
+        case _:
+            raise Exception("Invalid text node type")
