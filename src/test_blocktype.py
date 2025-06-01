@@ -46,7 +46,7 @@ class TestBlockType(unittest.TestCase):
         self.assertEqual(type, BlockType.ULIST)
 
     def test_blocktype_olist(self):
-        block = ". this is an ordered list\n. this is the second line"
+        block = "1. this is an ordered list\n2. this is the second line"
 
         type = block_to_block_type(block)
 

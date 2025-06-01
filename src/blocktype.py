@@ -18,7 +18,7 @@ def block_to_block_type(block):
             return BlockType.QUOTE
         case "-":
             return BlockType.ULIST
-        case ".":
+        case "1":
             return BlockType.OLIST
         case _:
             return BlockType.PARAGRAPH
