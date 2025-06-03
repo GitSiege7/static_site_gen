@@ -1,5 +1,6 @@
 import os
 import shutil
+from generate_page import generate_page
 
 def recursive_copy(source, destination):
     shutil.rmtree(destination)
@@ -16,5 +17,9 @@ def recursive_copy(source, destination):
 
 def main():
     recursive_copy("/home/siege/workspace/python/static_site_gen/static", "/home/siege/workspace/python/static_site_gen/public")
+
+    generate_page("/home/siege/workspace/python/static_site_gen/content/index.md", 
+                  "/home/siege/workspace/python/static_site_gen/template.html",
+                  "/home/siege/workspace/python/static_site_gen/public/index.html")
 
 main()

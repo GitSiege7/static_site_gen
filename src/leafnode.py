@@ -1,11 +1,10 @@
 from htmlnode import HTMLNode
-from textnode import TextType
 
 class LeafNode(HTMLNode):
     def __init__(self, tag, value, props=None):
         super().__init__(tag, value, None, props)
 
-    def to_html(self):
+    def to_html(self):        
         if(self.value == None):
             raise ValueError("LeafNode requires value")
         if(self.tag == None):
