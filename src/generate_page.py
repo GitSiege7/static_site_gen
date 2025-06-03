@@ -26,3 +26,15 @@ def generate_page(from_path, template_path, dest_path):
         fp.write(filled_template)
 
     return
+
+def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
+    
+    if os.path.isfile(dir_path_content):
+        new_dest = dest_dir_path.replace(".md", ".html")
+        
+        generate_page(dir_path_content, template_path, new_dest)
+    else:
+        for dir in os.listdir(dir_path_content):
+            generate_pages_recursive(dir_path_content + "/" + dir, template_path, dest_dir_path+ "/" + dir)
+    
+    return
